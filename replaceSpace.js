@@ -3,8 +3,8 @@
 // 输出："We%20are%20happy."
 
 /**
- * @params {string} str
- * @return {string} str
+ * @param {string} str
+ * @return {string}
  */
 
 const replaceSpace = (str) => {
