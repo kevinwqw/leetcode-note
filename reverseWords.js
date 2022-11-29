@@ -34,8 +34,8 @@ const removeExtraSpace = (strArr) => {
 
 /**
  * @param {Array} strArr
- * @param {number} start
- * @param {number} end
+ * @param {int} start
+ * @param {int} end
  * @return {Array}
  */
 const reverseArrayElem = (strArr, start, end) => {
