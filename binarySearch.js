@@ -1,4 +1,6 @@
 /**
+ * leetCode index: 704
+ *
  * BinarySearch Condititon
  * 1. arr has order
  * 2. no repeat element
