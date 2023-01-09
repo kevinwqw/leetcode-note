@@ -1,11 +1,14 @@
 /**
+ * BinarySearch Condititon
+ * 1. arr has order
+ * 2. no repeat element
+ * T-complexity O(Log2N)
  *
  * @param {Array} arr
  * @param {any} target
  * @param {number} left
  * @param {number} right
  * @returns {number}
- * O(Log2N)
  */
 const search = (arr, target, left, right) => {
     if (left > right) return -1;
@@ -16,5 +19,5 @@ const search = (arr, target, left, right) => {
 };
 
 const bSearch = (arr, target) => {
-    return search(arr, target, 0, arr.length);
+    return search(arr, target, 0, arr.length - 1);
 };
