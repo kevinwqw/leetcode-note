@@ -35,10 +35,12 @@ const sortedArraySquare = (arr) => {
  * @return {number []}
  */
 const sortedArraySquare2 = (arr) => {
+    const len = arr.length;
+    if (len === 0) return arr;
+    const res = new Array(len).fill(0);
     let left = 0;
-    let right = arr.length - 1;
-    const res = [];
-    for (let i = arr.length - 1; i >= 0; i--) {
+    let right = len - 1;
+    for (let i = len - 1; i >= 0; i--) {
         const leftSquare = arr[left] * arr[left];
         const rightSquare = arr[right] * arr[right];
         if (leftSquare > rightSquare) {
