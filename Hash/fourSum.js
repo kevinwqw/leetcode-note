@@ -1,25 +1,41 @@
 /**
- * Leetcode index: 454
+ * Leetcode index: 18
  *
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @param {number[]} nums3
- * @param {number[]} nums4
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
  */
-const fourSum = (nums1, nums2, nums3, nums4) => {
-    const twoSumRecord = new Map();
-    for (const num1 of nums1) {
-        for (const num2 of nums2) {
-            twoSumRecord.set(num1 + num2, (twoSumRecord.get(num1 + num2) || 0) + 1);
+const fourSum = (nums, target) => {
+    const res = [];
+    const len = nums.length;
+    if (len < 4) return res;
+    nums.sort((a, b) => a - b);
+    for (let i = 0; i < len - 3; i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+        for (let j = i + 1; j < len - 2; j++) {
+            if (j > i + 1 && nums[j] === nums[j - 1]) continue;
+            let l = j + 1;
+            let r = len - 1;
+            while (l < r) {
+                const sum = nums[i] + nums[j] + nums[l] + nums[r];
+                if (sum > target) {
+                    r--;
+                    continue;
+                }
+
+                if (sum < target) {
+                    l++;
+                    continue;
+                }
+
+                res.push([nums[i], nums[j], nums[l], nums[r]]);
+                while (l < r && nums[l] === nums[l + 1]) l++;
+                while (l < r && nums[r] === nums[r - 1]) r--;
+                l++;
+                r--;
+            }
         }
     }
 
-    let count = 0;
-    for (const num3 of nums3) {
-        for (const num4 of nums4) {
-            if (twoSumRecord.has(-num3 - num4)) count += twoSumRecord.get(-num3 - num4);
-        }
-    }
-
-    return count;
+    return res;
 };
