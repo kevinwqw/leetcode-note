@@ -13,5 +13,16 @@ class TreeNode {
  * @return {number[]}
  */
 const postTraversal = (root) => {
-    third;
+    const res = [];
+
+    const dfs = (node) => {
+        if (node === null) return;
+        dfs(node.left);
+        dfs(node.right);
+        res.push(node.val);
+    };
+    
+    dfs(root);
+
+    return res;
 };
