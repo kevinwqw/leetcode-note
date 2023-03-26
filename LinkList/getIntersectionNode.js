@@ -6,7 +6,7 @@ class ListNode {
 }
 
 /**
- * Leetcode index: 02.07
+ * leetCode index: 02.07
  * 
  * @param {ListNode} headA
  * @param {ListNode} headB

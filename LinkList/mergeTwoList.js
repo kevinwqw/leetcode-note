@@ -5,7 +5,8 @@ class ListNode {
     }
 }
 /**
- *
+ * leetCode index: 21
+ * 
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
