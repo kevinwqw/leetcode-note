@@ -8,7 +8,7 @@ class ListNode {
 /**
  * Leetcode index: 142
  *
- * @param {Listnode} head
+ * @param {ListNode} head
  * @return {ListNode}
  */
 const detectCycle = (head) => {
