@@ -1,14 +1,10 @@
-/**
- * leetCode index: 707
+/*
+ * @lc app=leetcode.cn id=707 lang=javascript
  *
- * Your MyLinkedList object will be instantiated and called as such:
- * var obj = new MyLinkedList()
- * var param_1 = obj.get(index)
- * obj.addAtHead(val)
- * obj.addAtTail(val)
- * obj.addAtIndex(index,val)
- * obj.deleteAtIndex(index)
+ * [707] 设计链表
  */
+
+// @lc code=start
 
 var LinkNode = function (val, next) {
   this.val = val
@@ -26,14 +22,14 @@ var MyLinkedList = function () {
  * @return {number}
  */
 MyLinkedList.prototype.get = function (index) {
-  if (index < 0 || index >= this.size) return -1
+  if (index < 0 || this.size < index + 1) return -1
 
-  let indexNode = this.head
-  while (index) {
-    indexNode = indexNode.next
-    index--
+  let temp = this.head
+  while (index--) {
+    temp = temp.next
   }
-  return indexNode.val
+
+  return temp.val
 }
 
 /**
@@ -43,7 +39,6 @@ MyLinkedList.prototype.get = function (index) {
 MyLinkedList.prototype.addAtHead = function (val) {
   const newNode = new LinkNode(val, this.head)
   this.head = newNode
-  if (!this.size) this.tail = newNode
   this.size += 1
 }
 
@@ -53,11 +48,12 @@ MyLinkedList.prototype.addAtHead = function (val) {
  */
 MyLinkedList.prototype.addAtTail = function (val) {
   const newNode = new LinkNode(val)
-  if (!this.size) {
-    this.head = newNode
-  } else {
+  if (this.size > 0) {
     this.tail.next = newNode
+  } else {
+    this.head = newNode
   }
+
   this.size += 1
 }
 
@@ -67,20 +63,19 @@ MyLinkedList.prototype.addAtTail = function (val) {
  * @return {void}
  */
 MyLinkedList.prototype.addAtIndex = function (index, val) {
-  if (index > this.size) {
-    return
-  } else if (index === 0) {
+  if (index < 0 || this.size < index + 1) return
+
+  if (index === 0) {
     this.addAtHead(val)
   } else if (index === this.size) {
     this.addAtTail(val)
   } else {
-    let preNode = this.head
-    while (index > 1) {
-      preNode = preNode.next
-      index--
+    let temp = this.head
+    while (index--) {
+      temp = temp.next
     }
-    let newNode = new LinkNode(val, preNode.next)
-    preNode.next = newNode
+    const newNode = new LinkNode(val, temp.next.next)
+    temp.next = newNode
     this.size += 1
   }
 }
@@ -90,21 +85,29 @@ MyLinkedList.prototype.addAtIndex = function (index, val) {
  * @return {void}
  */
 MyLinkedList.prototype.deleteAtIndex = function (index) {
-  if (index < 0 || index >= this.size || !this.size) return
-  if (!index) {
+  if (index < 0 || this.size < index + 1 || !this.size) return
+
+  if (index === 0) {
     this.head = this.head.next
-    this.size -= 1
-    return
+  } else {
+    let temp = this.head
+    while (index > 1) {
+      temp = temp.next
+      index--
+    }
+    temp.next = temp.next.next
   }
 
-  let preNode = this.head
-  while (index > 1) {
-    preNode = preNode.next
-    index--
-  }
-  if (preNode.next === this.tail) {
-    this.tail = preNode
-  }
-  preNode.next = preNode.next.next
   this.size -= 1
 }
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * var obj = new MyLinkedList()
+ * var param_1 = obj.get(index)
+ * obj.addAtHead(val)
+ * obj.addAtTail(val)
+ * obj.addAtIndex(index,val)
+ * obj.deleteAtIndex(index)
+ */
+// @lc code=end
