@@ -21,14 +21,14 @@ var search = function (nums, target) {
     if (nums[mid] === target) return mid
 
     if (nums[mid] >= nums[l]) {
-      // 左侧升序
+      // 左侧升序, 在单调区间内使用二分查找
       if (target >= nums[l] && target < nums[mid]) {
         r = mid - 1
       } else {
         l = mid + 1
       }
     } else {
-      // 右侧升序
+      // 右侧升序, 在单调区间内使用二分查找
       if (target > nums[mid] && target <= nums[r]) {
         l = mid + 1
       } else {
