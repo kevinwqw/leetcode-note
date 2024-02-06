@@ -26,7 +26,7 @@ var swapPairs = function (head) {
     pre.next = cur.next
     cur.next = pre
     temp.next = cur
-    // 完成交换后，调整下次要交换的vNode起点位置
+    // 完成交换后，调整下次要交换的vNode起点位置, vNode位置为两个交换节点的前一个节点
     temp = cur.next
   }
 

@@ -25,7 +25,7 @@ var fourSum = function (nums, target) {
     if (i > 0 && nums[i] === nums[i - 1]) continue // 这里由于是for循环，一次loop结束后i会自增，直接continue
     // 注意j最大范围
     for (let j = i + 1; j < nums.length - 2; j++) {
-      // 注意j - 1不能越界, 要移动过一次后再判断
+      // 注意 j - 1不能越界, 要移动过一次后再判断
       if (j > i + 1 && nums[j] === nums[j - 1]) continue
 
       let l = j + 1

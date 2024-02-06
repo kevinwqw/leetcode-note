@@ -34,7 +34,7 @@ class Automaton {
     this.state = this.mapping.get(this.state)[this.getIndex(char)]
 
     if (this.state === 'in_number') {
-      this.answer = this.answer * 10 + (char - 0)
+      this.answer = this.answer * 10 + (char - 0) // string - int -> int
       this.answer =
         this.sign === 1 ? Math.min(this.answer, Math.pow(2, 31) - 1) : Math.min(this.answer, -Math.pow(-2, 31))
     } else if (this.state === 'signed') {
