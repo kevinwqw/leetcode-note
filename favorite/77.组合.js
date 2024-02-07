@@ -23,7 +23,8 @@ const backTracking = (n, k, res, path, startIndex) => {
     return
   }
 
-  for (let i = startIndex; i <= n; i++) {
+  // 裁枝：k - path.length 为组合长度k仍需元素个数
+  for (let i = startIndex; i <= n - (k - path.length) + 1; i++) {
     path.push(i)
     backTracking(n, k, res, path, i + 1)
     path.pop()
