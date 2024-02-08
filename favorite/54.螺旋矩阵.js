@@ -11,47 +11,41 @@
  */
 var spiralOrder = function (matrix) {
   const res = []
-  let offset = 1
-  let c_start = 0
-  let r_start = 0
-  let totalRow = matrix.length
-  let totalCol = matrix[0].length
+  let top = 0
+  let bottom = matrix.length - 1
+  let left = 0
+  let right = matrix[0].length - 1
 
-  while (offset < totalRow && (totalRow !== offset + 1 || totalCol !== offset + 1)) {
-    for (let c = c_start; c < totalCol - offset; c++) {
-      res.push(matrix[r_start][c])
-      c_start++
+  while (top < bottom && left < right) {
+    for (let i = left; i < right; i++) {
+      res.push(matrix[top][i])
     }
 
-    for (let r = r_start; r < totalRow - offset; r++) {
-      res.push(matrix[r][c_start])
-      r_start++
+    for (let i = top; i < bottom; i++) {
+      res.push(matrix[i][right])
     }
 
-    for (let c = c_start; c > offset - 1; c--) {
-      res.push(matrix[r_start][c])
-      c_start--
+    for (let i = right; i > left; i--) {
+      res.push(matrix[bottom][i])
     }
 
-    for (let r = r_start; r > offset - 1; r--) {
-      res.push(matrix[r][c_start])
-      r_start--
+    for (let i = bottom; i > top; i--) {
+      res.push(matrix[i][left])
     }
 
-    c_start = offset
-    r_start = offset
-    offset++
+    top++
+    bottom--
+    left++
+    right--
   }
 
-  if (totalRow === offset + 1 && totalCol > offset + 1) {
-    for (let c = c_start; c < totalCol - offset + 1; c++) {
-      res.push(matrix[r_start][c])
+  if (top === bottom) {
+    for (let i = left; i <= right; i++) {
+      res.push(matrix[top][i])
     }
-  }
-
-  if (totalCol === offset + 1 && totalRow > offset + 1) {
-    for (let r = r_start; r < totalRow - offset + 1; r++) {
-      res.push(matrix[r][c_start])
+  } else if (left === right) {
+    for (let i = top; i <= bottom; i++) {
+      res.push(matrix[i][left])
     }
   }
 
